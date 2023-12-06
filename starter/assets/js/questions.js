@@ -116,5 +116,5 @@ function startTimer() {
 function endQuiz() {
   questionId.classList.add("hide");
   feedbackForAns.classList.remove("hide");
-  feedbackForAns.textContent = "Quiz ended! Your final score is:" + timeLeft + " seconds";
+  feedbackForAns.textContent = "Quiz ended! Your final score is: " + timeLeft + " seconds";
 }
