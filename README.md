@@ -11,7 +11,7 @@ These helps user to test their knowledge and helps the gain more confident.
 
 The main things I have learned from this project are how to use web API, eventListener, function, setInterval in JavaScript.
 
-[Link to my deployed web page](https://rrana5106.github.io/Rupesh-Password-Generator/)
+[Link to my deployed web page](https://rrana5106.github.io/rupesh-code-quiz/)
 
 ## Installation
 N/A
