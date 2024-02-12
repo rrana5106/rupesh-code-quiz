@@ -7,6 +7,8 @@ const choicesOption = document.getElementById("choices");
 const feedbackForAns = document.getElementById("feedback");
 const timeElement = document.getElementById("time");
 
+let timerInterval;
+
 // Array of questions with options and correct answers
 const questionToUser = [
   {
@@ -20,9 +22,9 @@ const questionToUser = [
       "Hyper Text Markup Language",
       "High Tech Modern Language",
       "Hyperlink and Text Markup Language",
-      "Home Tool Markup Language"
+      "Home Tool Markup Language",
     ],
-    correctAnswer: "Hyper Text Markup Language"
+    correctAnswer: "Hyper Text Markup Language",
   },
   {
     question: "What does CSS stand for?",
@@ -30,10 +32,10 @@ const questionToUser = [
       "Counter Strike: Source",
       "Computer Style Sheets",
       "Creative Style Sheets",
-      "Cascading Style Sheets"
+      "Cascading Style Sheets",
     ],
-    correctAnswer: "Cascading Style Sheets"
-  }
+    correctAnswer: "Cascading Style Sheets",
+  },
 ];
 
 // Initialize variables
@@ -84,11 +86,15 @@ function checkAnswer(selectedOption, correctAnswer) {
   } else {
     feedbackForAns.textContent = "Incorrect!";
     timeLeft -= 10; // Subtract 10 seconds for an incorrect answer
+
+    if (timeLeft < 0) {
+      timeLeft = 0; // Ensure the time doesn't go negative
+    }
     // You can perform other actions for an incorrect answer
-    
   }
 
   currentQuestionIndex++;
+  console.log(currentQuestionIndex);
 
   // Check if there are more questions or end the quiz
   if (currentQuestionIndex < questionToUser.length) {
@@ -100,7 +106,7 @@ function checkAnswer(selectedOption, correctAnswer) {
 
 // Function to start the timer
 function startTimer() {
-  const timerInterval = setInterval(function () {
+  timerInterval = setInterval(function () {
     timeElement.textContent = timeLeft;
     timeLeft--;
 
@@ -114,7 +120,13 @@ function startTimer() {
 
 // Function to end the quiz and display the final score
 function endQuiz() {
+  // Stop the timer
+  clearInterval(timerInterval);
+
   questionId.classList.add("hide");
+
+
   feedbackForAns.classList.remove("hide");
-  feedbackForAns.textContent = "Quiz ended! Your final score is: " + timeLeft + " seconds";
+  feedbackForAns.textContent =
+    "Quiz ended! Your final score is: " + timeLeft + " seconds";
 }
